@@ -6,17 +6,14 @@ export const getCountryData = async ({ country }) => {
   )
   const json = await response.json()
 
-  // return last item in array of data => which is latest data available
-  const position = json.length ? json.length - 1 : 0
-
   return {
     country,
-    province: json[position].Province,
-    city: json[position].City,
-    deaths: json[position].Deaths,
-    confirmed: json[position].Confirmed,
-    recovered: json[position].Recovered,
-    active: json[position].Active,
-    date: json[position].Date,
+    province: json[json.length - 1].Province,
+    city: json[json.length - 1].City,
+    deaths: json[json.length - 1].Deaths,
+    confirmed: json[json.length - 1].Confirmed,
+    recovered: json[json.length - 1].Recovered,
+    active: json[json.length - 1].Active,
+    date: json[json.length - 1].Date,
   }
 }
